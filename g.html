@@ -1,0 +1,294 @@
+
+<style type="text/css">
+    tbody> tr:nth-child(even) {
+    background: #FFF;
+        color: black;
+}
+
+tbody> tr:nth-child(odd) {
+    background: #FFF;
+        color: black;
+}
+thead>tr>th {
+    text-align: center;
+}
+tbody>tr>td {
+    text-align: center;
+    font-weight: 500;
+}
+table, th, td {
+    border: 1px solid #8a8a8a;
+}
+</style>
+<div class="panel panel-midnightblue" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+ 	<div class="panel-heading">
+        <div class="options">
+            <ul class="nav nav-tabs pull-left" >
+                <li class="active">
+                    <a data-toggle="tab">General Abstract</a>
+                </li>
+                <li><a data-target="#" href="#admin" data-toggle="tab">Analytics</a></li>
+                <li><a data-target="#" href="#observation" data-toggle="tab">Observations</a></li>
+                <li>
+                    <a  data-target="#performance" href="#performanceadmin" data-toggle="tab" ng-click="setTabType(2);">Performance</a>
+                </li>
+                <li>
+                    <a data-target="#analytics"  href="#performanceadmin" data-toggle="tab" ng-click='setTabType(1);'>Projects Overview</a>
+                </li> 
+                 <li ng-if="userProfile.hasETL">
+                    <a data-target="#"  href="#migrationworks" data-toggle="tab">ETL Migration  {{userProfile.worksLabel}}s</a>
+                </li>
+            </ul>
+
+            <div class="pull-right">
+             
+                <a data-title="Filter" bs-tooltip class="pull-right mr-sm" style="margin-top:3px;" ng-click="showHide()"><i class="fa fa-filter fa-2x"></i></a> 
+            </div>
+        </div>        
+    </div>
+  
+
+    <div class="panel-body charts-title"> 
+     <div class="col-md-10" style="padding-left:36%;font-size: 26px;color: #cc8318;font-weight: 600;">General Abstract</div>
+<div class="table-responsive" ng-style="{'height':finalHeight,'overflow-y': auto}" style="height:500px;overflow-y: auto">
+    <table class="table table-striped" style="margin-bottom:0;background: #2d6b8a;">
+      <thead fix-head style="color:#fff;font-weight: 500">
+        <tr>
+        	<th style="text-align: center;" >S.No.</th>
+        	<!-- <th style="text-align: center;" >Year of Scheme</th> -->
+        	<th style="text-align: center;" >
+                <a href="" ng-click="orderBy('localityName')"  style="color:#eee;">Scheme
+                   <i ng-if="order_by== 'localityName'"
+                   class="fa "
+                   ng-class="{'fa-chevron-down': !order_by_asc, 'fa-chevron-up': order_by_asc}">
+                 </i>
+             </a>
+            </th>
+            <th style="text-align: center;" >
+                <a href="" ng-click="orderBy('projectShortName')"  style="color:#eee;">Admin Sanction
+                   <i ng-if="order_by== 'projectShortName'"
+                   class="fa "
+                   ng-class="{'fa-chevron-down': !order_by_asc, 'fa-chevron-up': order_by_asc}">
+                 </i>
+             </a>
+            </th>
+            <th style="text-align: center;" >
+                <a href="" ng-click="orderBy('sanctionedAmount')"  style="color:#eee;">Completed
+                       <i ng-if="order_by== 'sanctionedAmount'"
+                       class="fa "
+                       ng-class="{'fa-chevron-down': !order_by_asc, 'fa-chevron-up': order_by_asc}">
+                     </i>
+                 </a></th>
+            <th style="text-align: center;" >
+                <a href="" ng-click="orderBy('estimatedAmount')"  style="color:#eee;">Balance
+                       <i ng-if="order_by== 'estimatedAmount'"
+                       class="fa "
+                       ng-class="{'fa-chevron-down': !order_by_asc, 'fa-chevron-up': order_by_asc}">
+                     </i>
+                 </a>
+            </th>
+        	 <th style="text-align: center;" >
+                <a href="" ng-click="orderBy('estimatedAmount')"  style="color:#eee;">Site to be given/Site dispute
+                       <i ng-if="order_by== 'estimatedAmount'"
+                       class="fa "
+                       ng-class="{'fa-chevron-down': !order_by_asc, 'fa-chevron-up': order_by_asc}">
+                     </i>
+                 </a>
+            </th>
+             <th style="text-align: center;" >
+                <a href="" ng-click="orderBy('estimatedAmount')"  style="color:#eee;">RAS to be Obtained
+                       <i ng-if="order_by== 'estimatedAmount'"
+                       class="fa "
+                       ng-class="{'fa-chevron-down': !order_by_asc, 'fa-chevron-up': order_by_asc}">
+                     </i>
+                 </a>
+            </th>
+             <th style="text-align: center;" >
+                <a href="" ng-click="orderBy('estimatedAmount')"  style="color:#eee;">Tender Under Scrutiny
+                       <i ng-if="order_by== 'estimatedAmount'"
+                       class="fa "
+                       ng-class="{'fa-chevron-down': !order_by_asc, 'fa-chevron-up': order_by_asc}">
+                     </i>
+                 </a>
+            </th>
+            <th style="text-align: center;" >
+                <a href="" ng-click="orderBy('estimatedAmount')"  style="color:#eee;">Tender to be called for
+                       <i ng-if="order_by== 'estimatedAmount'"
+                       class="fa "
+                       ng-class="{'fa-chevron-down': !order_by_asc, 'fa-chevron-up': order_by_asc}">
+                     </i>
+                 </a>
+            </th>
+            <th style="text-align: center;" >
+                <a href="" ng-click="orderBy('estimatedAmount')"  style="color:#eee;">Work to be started
+                       <i ng-if="order_by== 'estimatedAmount'"
+                       class="fa "
+                       ng-class="{'fa-chevron-down': !order_by_asc, 'fa-chevron-up': order_by_asc}">
+                     </i>
+                 </a>
+            </th>
+            <th style="text-align: center;" >
+                <a href="" ng-click="orderBy('estimatedAmount')"  style="color:#eee;">Progress
+                       <i ng-if="order_by== 'estimatedAmount'"
+                       class="fa "
+                       ng-class="{'fa-chevron-down': !order_by_asc, 'fa-chevron-up': order_by_asc}">
+                     </i>
+                 </a>
+            </th>
+            <th style="text-align: center;" >
+                <a href="" ng-click="orderBy('estimatedAmount')"  style="color:#eee;">Estimate under preparation
+                       <i ng-if="order_by== 'estimatedAmount'"
+                       class="fa "
+                       ng-class="{'fa-chevron-down': !order_by_asc, 'fa-chevron-up': order_by_asc}">
+                     </i>
+                 </a>
+            </th>
+            <th style="text-align: center;" >
+                <a href="" ng-click="orderBy('estimatedAmount')"  style="color:#eee;">Drop
+                       <i ng-if="order_by== 'estimatedAmount'"
+                       class="fa "
+                       ng-class="{'fa-chevron-down': !order_by_asc, 'fa-chevron-up': order_by_asc}">
+                     </i>
+                 </a>
+            </th>
+
+        </tr>
+      </thead>
+      <tbody>
+      	<tr>
+      		<td>1</td>
+      		<td>Hostels"BJRCY"</td>
+      		<td>208</td>
+            <td>207</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+      	</tr>
+      	<tr>
+      		<td>2</td>
+      		<td>Hostels "State"</td>
+      		<td>177</td>
+            <td>149</td>
+            <td>28</td>
+            <td>5</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>21</td>
+            <td>0</td>
+            <td>1</td>
+      	</tr>
+      	<tr>
+      		<td>3</td>
+      		<td>School & Lab(ADW)</td>
+      		<td>172</td>
+            <td>97</td>
+            <td>75</td>
+            <td>4</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>69</td>
+            <td>0</td>
+            <td>1</td>
+      	</tr>
+      	<tr>
+      		<td>4</td>
+      		<td>ADW Community Hall</td>
+      		<td>40</td>
+            <td>24</td>
+            <td>16</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>6</td>
+            <td>9</td>
+      	</tr>
+      	<tr>
+      		<td>5</td>
+      		<td>ADW SCA Works</td>
+      		<td>136</td>
+            <td>177</td>
+            <td>19</td>
+            <td>0</td>
+            <td>3</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>2</td>
+            <td>0</td>
+            <td>14</td>
+      	</tr>
+      	<tr>
+      		<td>6</td>
+      		<td>Hostels(Tribal)</td>
+      		<td>22</td>
+            <td>11</td>
+            <td>11</td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+            <td>8</td>
+            <td>0</td>
+            <td>0</td>
+      	</tr>
+      	<tr>
+      		<td>7</td>
+      		<td>School & Lab(Tribal)</td>
+      		<td>108</td>
+            <td>59</td>
+            <td>49</td>
+            <td>5</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>43</td>
+            <td>0</td>
+            <td>0</td>
+      	</tr>
+          <tr style="font-size: 16px;background: #20cbe8;" ng-if="schemeList.length != 0 && !loadSpinner">
+            <td colspan="2" style="text-align: center;background: #ff7724;"><b>{{'Total'}}</b></td>
+            <td><b>863</b></td>
+            <td><b>653</b></td>
+            <td><b>199</b></td>
+            <td><b>15</b></td>
+            <td><b>4</b></td>
+            <td><b>2</b></td>
+            <td><b>2</b></td>
+            <td><b>1</b></td>
+            <td><b>144</b></td>
+            <td><b>25</b></td>
+            <td><b>0</b></td>
+          </tr>
+      </tbody>
+    </table>
+    <div ng-show="loadSpinner">
+        <div class="row text-center" >
+           <i class="fa fa-spinner fa-spin fa-4x fa-fw margin-bottom" style="color: #455a64;margin:10px 20px;" ></i>
+           <p style="color: black;">please wait....</p>
+        </div>
+    </div>
+    <div class="row" ng-if="schemeList.length == 0 && !loadSpinner">
+        <div class="col-md-12">
+            <div class="well">
+                No records found!
+            </div>  
+        </div>  
+    </div> 
+</div>
+</div>
+</div>
