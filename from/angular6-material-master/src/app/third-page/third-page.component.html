@@ -1,0 +1,14 @@
+<div class="table">
+  <table>
+    <tr class="tableHeading">
+      <th>S.No</th>
+      <th>Title</th>
+      <th>Body</th>
+    </tr>
+    <tr *ngFor="let product of data; index as i">
+      <td>{{i + 1}}</td>
+      <td>{{product.title}}</td>
+      <td>{{product.body}}</td>
+    </tr>
+  </table>
+</div>
