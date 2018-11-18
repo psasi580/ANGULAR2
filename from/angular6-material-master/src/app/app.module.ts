@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { RegisterService } from "./first-page/first-page.Services"
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,8 +12,10 @@ import { MyNavComponent } from './my-nav/my-nav.component';
 import { FirstPageComponent } from './first-page/first-page.component';
 import { SecondPageComponent } from './second-page/second-page.component';
 import { ThirdPageComponent } from './third-page/third-page.component';
-import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+
+//services
+// import {FirstServices} from "./first-page/first.services";
 
 const appRoutes: Routes = [
   { path: 'first-page', component: FirstPageComponent},
@@ -41,7 +45,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
