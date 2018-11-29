@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from "@angular/common/http"
 //Impor the service
 import { RegisterService } from "./first-page.Services"
+import swal from 'sweetalert';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-first-page',
@@ -14,7 +16,7 @@ export class FirstPageComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   regObj:any={};
-  constructor(private formBuilder: FormBuilder,private httpClient:HttpClient,private firstServices:RegisterService) { }
+  constructor(private router: Router,private formBuilder: FormBuilder,private httpClient:HttpClient,private firstServices:RegisterService) { }
 
   ngOnInit() {
       this.registerForm = this.formBuilder.group({
@@ -25,6 +27,8 @@ export class FirstPageComponent implements OnInit {
           email: ['', [Validators.required, Validators.email]],
           password: ['', [Validators.required, Validators.minLength(8)]]
       });
+     
+       
   }
 
   // convenience getter for easy access to form fields
@@ -37,11 +41,14 @@ export class FirstPageComponent implements OnInit {
     //   if (this.registerForm.invalid) {
     //       return;
     //   }
-    //   alert('SUCCESS!! :-)')
-      this.firstServices.registerUser(this.regObj)
-            .subscribe((res) => {
-                console.log(res);
-            })
+    // sweet alert
+      //  swal("Good job!", "You clicked the button!", "success");
+      this.firstServices.registerUser(this.regObj).subscribe((res) => {
+        swal("","","success",{title: "success",text: "Your successfully Created.",timer: 1000
+          });
+         this.router.navigateByUrl('/third-page');
+
+      })
 
   }
 

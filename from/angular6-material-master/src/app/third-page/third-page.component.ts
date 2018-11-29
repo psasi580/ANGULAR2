@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from "rxjs";
-import { HttpClient } from "@angular/common/http"
+import { UserService } from "./third-page.services";
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup,Validators} from '@angular/forms';
+
 
 @Component({
   selector: 'app-third-page',
@@ -9,13 +11,34 @@ import { HttpClient } from "@angular/common/http"
 })
 export class ThirdPageComponent implements OnInit {
   data:any=[];
-  constructor(private httpClient:HttpClient) {
-    this.httpClient.get('https://jsonplaceholder.typicode.com/posts?userId=1').subscribe((res)=>{
-    this.data=res;
-  });
+  search:any={};
+  registerForm1: FormGroup;
+  constructor(private router: Router,public thirdServices:UserService,private formBuilder: FormBuilder) {
+    this.registerUser1();
+  }
+  registerUser1(){
+    this.thirdServices.registerUser1(this.data).subscribe(res => {
+      this.data=res
+    });
+  }
+  createUser() {
+    this.router.navigateByUrl('/first-page'); 
+  }
+  searchValue(username){
+       console.log(username);
+    this.thirdServices.searchMethods(username).subscribe((res) => {
+      swal("","","success",{title: "success",text: "Your successfully Created.",timer: 1000
+        });
+        if(username!="")
+         this.data=res
+         else
+         this.registerUser1();
+
+      })
   }
   ngOnInit() {
-      
+
+     
   }
   
 }

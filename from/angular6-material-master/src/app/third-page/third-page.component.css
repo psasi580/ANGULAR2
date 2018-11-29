@@ -24,3 +24,12 @@ div {
     background-color: #1d3d4b;
     color: #eee;
 }
+button{
+    background-color: #00BCD4;
+    margin-left: 10px;
+    margin-top: 66px;
+    float: right;
+}
+.search{
+    float: right;   
+}
